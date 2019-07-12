@@ -1,11 +1,11 @@
-; このファイルは emacs の設定ファイルです．
-; emacs の設定ファイルではセミコロン ';' 以降の文字がコメントとして扱われます．
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "/usr/share/emacs24/site-lisp/emacs-mozc")
+;; emacs 日本語入力
+;; $ sudo apt-get install emacs-mozc emacs-mozc-bin
 
+(add-to-list 'load-path "/usr/share/emacs24/site-lisp/emacs-mozc")
 (require 'mozc)
 (setq default-input-method "japanese-mozc")
+;; Ref: http://mickey-happygolucky.hatenablog.com/entry/2015/12/11/001402
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; https://www.yokoweb.net/2017/01/23/emacs-fontsize-screensize/
 
