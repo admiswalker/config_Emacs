@@ -1,37 +1,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; emacs 日本語入力
-;; $ sudo apt-get install emacs-mozc emacs-mozc-bin
-
-(add-to-list 'load-path "/usr/share/emacs24/site-lisp/emacs-mozc")
-(require 'mozc)
-(setq default-input-method "japanese-mozc")
-;; Ref: http://mickey-happygolucky.hatenablog.com/entry/2015/12/11/001402
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; https://www.yokoweb.net/2017/01/23/emacs-fontsize-screensize/
-
-;; 初期フレームの設定
-(setq initial-frame-alist
-      (append (list
-           '(width . 150)
-           '(height . 55)
-;;         '(top . 0)
-;;         '(left . 0)
-           )
-          initial-frame-alist))
-
-;; モニタ解像度に応じてフォントサイズを変える
-;; ※高さが1100以上の場合はフォントサイズを18,それ未満は16にする
-(let ((size (if (>= (x-display-pixel-height) 1100) 18 16)))
-  (condition-case err
-      (let ((myfont (format "Osaka-%d" size)))
-    (set-frame-font myfont)
-    (add-to-list 'initial-frame-alist `(font . ,myfont)))
-    (error (message "%s" err))))
-
-;; 新規フレームのデフォルト設定
-(setq default-frame-alist initial-frame-alist)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ツールバーを非表示
 (tool-bar-mode -1)
 ;; メニューバーを非表示
@@ -40,6 +7,10 @@
 (scroll-bar-mode -1)
 ;; フォント
 ;(fixed-width-set-fontset "msgothic" 12)
+
+(add-to-list 'default-frame-alist '(height . 55))
+(add-to-list 'default-frame-alist '(width . 150))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
