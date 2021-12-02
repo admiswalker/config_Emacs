@@ -1,5 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ツールバーを非表示
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (tool-bar-mode -1)
 ;; メニューバーを非表示
 (menu-bar-mode -1)
@@ -341,3 +348,52 @@ buffer in cyclic order."
  
  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t)
+
+
+
+
+
+
+
+;; Qiita: Emacs環境をアップデートする（straight.el） for typescript
+;; ref: https://qiita.com/yuze/items/a145b1e3edb6d0c24cbf
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; Qiita: Emacsにtypescript環境を設定する
+;; ref: https://qiita.com/yuze/items/76df309992534d75bd25
+;; typescript
+(straight-use-package 'typescript-mode)
+(straight-use-package 'tide)
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-hook 'typescript-mode-hook
+          '(lambda ()
+             (interactive)
+             (tide-setup)
+             (flycheck-mode +1)
+             (tide-hl-identifier-mode +1)
+             (company-mode +1)
+             (eldoc-mode +1)
+             ))
+
+(setq js-indent-level 2)
+(setq typescript-indent-level 2)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; for *.yml file
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
