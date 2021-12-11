@@ -60,9 +60,15 @@
 
 ;(setq-default tab-width 2 indent-tabs-mode nil); タブにスペースを使用する
 (setq default-tab-width 4);タブの表示幅の設定
-;(setq indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 ;(keyboard-translate ?\t ?\M-i);\C-q \t: タブキーを何が何でも tab キーとして入力するための設定．[タブの入力方法: Ctrl-i/ESC-i/Alt-iのいずれか，または，Ctrl-qでエスケープしてTABキーで入力];これだと 1 タブ = 8 スペースにしないと，1 タブで 1 タブ 4 スペースが 2 つ挿入される
 ;(setq c-tab-always-indent t); タブ (よくあるタブの設定，上記設定と競合するため注意)
+
+(add-hook 'c-mode-common-hook
+	  '(lambda()
+	     (setq default-tab-width 4);タブの表示幅の設定
+	     (setq indent-tabs-mode nil)
+	     ))
 
 ;; 改行コードを表示する
 (setq eol-mnemonic-dos "(CRLF)")
