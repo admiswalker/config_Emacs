@@ -403,3 +403,14 @@ buffer in cyclic order."
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; for *.sh file
+
+(setq sh-basic-offset 4)
+(setq sh-indentation 4)
+(defun turn-off-indent-tabs-mode () ;; https://emacs.stackexchange.com/questions/52047/how-to-change-shell-script-mode-indentation-not-to-use-tabs
+  (setq indent-tabs-mode nil))
+(add-hook 'sh-mode-hook #'turn-off-indent-tabs-mode)
+
