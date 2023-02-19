@@ -421,3 +421,12 @@ buffer in cyclic order."
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; for *.sh file
+
+;(setq sh-basic-offset 4)
+;(setq sh-indentation 4)
+;(defun turn-off-indent-tabs-mode () ;; https://emacs.stackexchange.com/questions/52047/how-to-change-shell-script-mode-indentation-not-to-use-tabs
+;  (setq indent-tabs-mode nil))
+;(add-hook 'sh-mode-hook #'turn-off-indent-tabs-mode)
+
