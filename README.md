@@ -47,11 +47,39 @@ config file of my emacs
    ```
    ;;;;;;;;;;;;;;;;;;;;;;;;;
    ;; for multiple-cursors
+   ;; ref:
+   ;; - https://github.com/magnars/multiple-cursors.el
+   ;; - http://emacs.rubikitch.com/multiple-cursors/
    
-   (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/multiple-cursors.el-master/")
-   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+   (add-to-list 'load-path "~/.emacs.d/packages/multiple-cursors.el-master")
+   (require 'multiple-cursors)
+   ;(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+   ;(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+   ;(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+   ;(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+   
+   (defun mc/edit-lines-or-string-rectangle (s e)
+     "C-x r tで同じ桁の場合にmc/edit-lines (C-u M-x mc/mark-all-dwim)"
+     (interactive "r")
+     (if (eq (save-excursion (goto-char s) (current-column))
+             (save-excursion (goto-char e) (current-column)))
+         (call-interactively 'mc/edit-lines)
+       (call-interactively 'string-rectangle)))
+   (global-set-key (kbd "C-x r t") 'mc/edit-lines-or-string-rectangle)
+   
+   (defun mc/mark-all-dwim-or-mark-sexp (arg)
+     "C-u C-M-SPCでmc/mark-all-dwim, C-u C-u C-M-SPCでC-u M-x mc/mark-all-dwim"
+     (interactive "p")
+     (cl-case arg
+       (16 (mc/mark-all-dwim t))
+       (4 (mc/mark-all-dwim nil))
+       (1 (mark-sexp 1))))
+   (global-set-key (kbd "C-M-SPC") 'mc/mark-all-dwim-or-mark-sexp)
    ```
+3. `C-x r t` の初回実行時に n を入力して Enter
+   multiple-cursors の初回実行時に
+   > Do mc/edit-lines-or-string-rectangle for all cursors? (y or n)
+   と聞かれるので n と答える．
+   ※ y と答えると，`Multiple-Cursors mode disabled in current buffer` と表示されて，
+   動作しないくなるので，`~/.emacs.d/.mc-lists.el` を削除して，もう一度やり直す．
 
