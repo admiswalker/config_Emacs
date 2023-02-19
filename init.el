@@ -5,7 +5,15 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("elpa" .     "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (package-initialize)
+
 
 (tool-bar-mode -1)
 ;; メニューバーを非表示
@@ -351,8 +359,8 @@ buffer in cyclic order."
  )
  
  
- 
- (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t)
 
 
@@ -403,3 +411,13 @@ buffer in cyclic order."
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; for multiple-cursors
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/packages/multiple-cursors.el-master/")
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+

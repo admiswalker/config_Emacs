@@ -41,4 +41,17 @@ config file of my emacs
    (require 'yaml-mode)
    (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
    ```
+### multiple-cursors のインストールと設定
+1. （パッケージサーバが死んでいたので）[本家の GitHub](https://github.com/magnars/multiple-cursors.el) からソースコードのzipを取得して，`~/.emacs.d/` 下で展開
+2. `~/.emacs.d/init.el` に下記を追記
+   ```
+   ;;;;;;;;;;;;;;;;;;;;;;;;;
+   ;; for multiple-cursors
+   
+   (add-to-list 'custom-theme-load-path "~/.emacs.d/packages/multiple-cursors.el-master/")
+   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+   ```
 
