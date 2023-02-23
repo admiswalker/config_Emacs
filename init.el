@@ -442,6 +442,7 @@ buffer in cyclic order."
           (save-excursion (goto-char e) (current-column)))
       (call-interactively 'mc/edit-lines)
     (call-interactively 'string-rectangle)))
+  (electric-indent-local-mode t)
 (global-set-key (kbd "C-x r t") 'mc/edit-lines-or-string-rectangle)
 
 (defun mc/mark-all-dwim-or-mark-sexp (arg)
