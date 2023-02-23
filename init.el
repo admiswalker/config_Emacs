@@ -436,13 +436,11 @@ buffer in cyclic order."
 
 (defun mc/edit-lines-or-string-rectangle (s e)
   "C-x r tで同じ桁の場合にmc/edit-lines (C-u M-x mc/mark-all-dwim)"
-  (electric-indent-local-mode -1)
   (interactive "r")
   (if (eq (save-excursion (goto-char s) (current-column))
           (save-excursion (goto-char e) (current-column)))
       (call-interactively 'mc/edit-lines)
-    (call-interactively 'string-rectangle)))
-  (electric-indent-local-mode t)
+     (call-interactively 'string-rectangle)))
 (global-set-key (kbd "C-x r t") 'mc/edit-lines-or-string-rectangle)
 
 (defun mc/mark-all-dwim-or-mark-sexp (arg)
