@@ -43,7 +43,13 @@ config file of my emacs
    ```
 ### multiple-cursors のインストールと設定
 1. （パッケージサーバが死んでいたので）[本家の GitHub](https://github.com/magnars/multiple-cursors.el) からソースコードのzipを取得して，`~/.emacs.d/` 下で展開
-2. `~/.emacs.d/init.el` に下記を追記
+   ```bash
+   mkdir -p ~/.emacs.d/packages/
+   cd ~/.emacs.d/packages/
+   wget https://github.com/magnars/multiple-cursors.el/archive/master.zip -O multiple-cursors.el-master.zip
+   unzip multiple-cursors.el-master.zip
+   ```
+3. `~/.emacs.d/init.el` に下記を追記
    ```
    ;;;;;;;;;;;;;;;;;;;;;;;;;
    ;; for multiple-cursors
@@ -76,7 +82,7 @@ config file of my emacs
        (1 (mark-sexp 1))))
    (global-set-key (kbd "C-M-SPC") 'mc/mark-all-dwim-or-mark-sexp)
    ```
-3. `C-x r t` の初回実行時に n を入力して Enter
+4. `C-x r t` の初回実行時に n を入力して Enter
    multiple-cursors の初回実行時に
    > Do mc/edit-lines-or-string-rectangle for all cursors? (y or n)
    と聞かれるので n と答える．
